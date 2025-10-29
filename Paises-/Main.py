@@ -21,7 +21,9 @@ def mostrar_paises(lista):
 
 
 def main():
-    paises = cargar_paises("Paises.csv")
+    
+    archivo_csv = "c:\\Users\\Luciano Nicolas\\Documents\\GitHub\\Trabajo-integrador-Programacion-\\Paises-\\Paises.csv"
+    paises = cargar_paises(archivo_csv)
     if not paises:
         print("No se pudieron cargar los datos. Verifique el archivo CSV.")
         return
