@@ -17,7 +17,7 @@ def mostrar_paises(lista):
         print("No se encontraron resultados.")
         return
     for p in lista:
-        print(f"{p['nombre']:15} | Población: {p['poblacion']:10} | Superficie: {p['superficie']:10} | {p['continente']}")
+        print(f"{p['nombre']:} | Población: {p['poblacion']:} | Superficie: {p['superficie']:} | {p['continente']}")
 
 
 def main():
