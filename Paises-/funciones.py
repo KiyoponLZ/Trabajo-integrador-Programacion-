@@ -1,11 +1,10 @@
 import csv  
 import os
+import re
 
 
 def cargar_paises(ruta):
-    """Carga el CSV manualmente y devuelve lista de dicts.
-    Formato esperado: nombre,poblacion,superficie,continente (encabezado opcional).
-    """
+    
     paises = []
     if not os.path.isfile(ruta):
         print("Error: el archivo no existe.")
@@ -18,13 +17,13 @@ def cargar_paises(ruta):
         print("Error al abrir el archivo:", e)
         return paises
 
-    # limpiar líneas
+    
     lineas = [l.strip() for l in lineas if l.strip() != ""]
 
     if len(lineas) == 0:
         return paises
 
-    # saltar posible encabezado
+    
     primera = lineas[0].lower()
     if "nombre" in primera and "poblacion" in primera:
         datos = lineas[1:]
@@ -51,7 +50,7 @@ def cargar_paises(ruta):
                 print("Advertencia: población inválida en línea", i, ":", pobl_str)
                 continue
 
-        # convertir superficie
+        
         try:
             sup = int(sup_str.replace(".", "").replace(" ", ""))
         except:
@@ -113,7 +112,7 @@ def filtrar_por_rango(paises, campo, minimo, maximo):
 
 
 def ordenar_paises(paises, campo, descendente=False):
-    # copia simple
+    
     lista = []
     for p in paises:
         lista.append(dict(p))
@@ -122,7 +121,7 @@ def ordenar_paises(paises, campo, descendente=False):
     for _ in lista:
         n += 1
 
-    # comparación sencilla
+    
     def menor(a, b):
         if campo == "nombre":
             try:
@@ -135,7 +134,7 @@ def ordenar_paises(paises, campo, descendente=False):
             except:
                 return False
 
-    # bubble sort (fácil de entender)
+    
     for i in range(n):
         for j in range(0, n - 1 - i):
             swap = False
@@ -153,7 +152,7 @@ def ordenar_paises(paises, campo, descendente=False):
 
 
 def estadisticas(paises):
-    """Calcula mayor/menor población, promedios y cantidad por continente."""
+   
     if not paises:
         return None
 
@@ -202,3 +201,61 @@ def estadisticas(paises):
         "promedio_superficie": promedio_sup,
         "cantidad_por_continente": por_continente
     }
+
+
+def agregar_pais_manual(paises, archivo_csv):
+    def solo_letras_ascii_y_espacios(s):
+        s = s.strip()
+        return bool(re.match(r'^[A-Za-z\s]+$', s))
+
+    nombre = input("Nombre del país: ").strip()
+    if not nombre or not solo_letras_ascii_y_espacios(nombre):
+        print("Nombre inválido. Use sólo letras ASCII y espacios (no acentos ni ñ, no números ni símbolos).")
+        return
+
+    if any(p['nombre'].strip().lower() == nombre.lower() for p in paises):
+        print("Error: el país ya está cargado. No se puede duplicar.")
+        return
+
+    continente = input("Continente: ").strip()
+    if not continente or not solo_letras_ascii_y_espacios(continente):
+        print("Continente inválido. Use sólo letras ASCII y espacios (no acentos ni ñ, no números ni símbolos).")
+        return
+
+    while True:
+        pob_input = input("Población (entero): ").strip()
+        try:
+            poblacion = int(pob_input)
+            if poblacion < 0:
+                print("La población debe ser un número no negativo.")
+                continue
+            break
+        except ValueError:
+            print("Entrada inválida. Ingrese un número entero.")
+
+    while True:
+        sup_input = input("Superficie (puede tener decimales): ").strip()
+        try:
+            superficie = float(sup_input)
+            if superficie < 0:
+                print("La superficie debe ser un número no negativo.")
+                continue
+            break
+        except ValueError:
+            print("Entrada inválida. Ingrese un número (ej. 1234 o 1234.56).")
+
+    nuevo = {
+        "nombre": nombre,
+        "poblacion": poblacion,
+        "superficie": superficie,
+        "continente": continente
+    }
+
+    paises.append(nuevo)
+
+    try:
+        with open(archivo_csv, "a", encoding="utf-8") as f:
+            f.write(f"{nombre},{poblacion},{superficie},{continente}\n")
+        print("País agregado correctamente y guardado en el CSV.")
+    except Exception as e:
+        print("País agregado en memoria pero no se pudo guardar en el CSV:", e)

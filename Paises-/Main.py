@@ -9,6 +9,7 @@ def mostrar_menu():
     print("4. Filtrar países por rango de superficie")
     print("5. Ordenar países")
     print("6. Mostrar estadísticas")
+    print("7. Agregar país manualmente")
     print("0. Salir")
 
 
@@ -79,6 +80,10 @@ def main():
                 print("\nCantidad de países por continente:")
                 for cont, cant in est["cantidad_por_continente"].items():
                     print(f"  {cont}: {cant}")
+
+        elif opcion == "7":
+            # Llama a la función centralizada en funciones.py
+            agregar_pais_manual(paises, archivo_csv)
 
         elif opcion == "0":
             print("Saliendo del programa...")
