@@ -1,7 +1,7 @@
 # Trabajo-integrador-Programacion-
-El trabajo para finalizar esta materia
+El trabajo para finalizar esta materia(por ahora)
 Proyecto Python – Análisis de Países
-Descripción del programa
+
 
 Descripción del proyecto
 
