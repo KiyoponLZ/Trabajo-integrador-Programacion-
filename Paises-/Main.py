@@ -1,6 +1,7 @@
 # Importo todas las funciones desde el archivo funciones.py
-# (ahí están las tareas principales como buscar, filtrar, ordenar, etc.)Vamos nosotros
+# (ahí están las tareas principales como buscar, filtrar, ordenar, etc.)
 from funciones import *
+import os
 
 # ---------------- MENÚ PRINCIPAL ----------------
 # Esta función solo muestra las opciones que tiene este programa
@@ -29,8 +30,8 @@ def mostrar_paises(lista):
 # ---------------- FUNCIÓN PRINCIPAL ----------------
 def main():
     
-    # Acá se indica la ruta donde está guardado el archivo CSV con los países
-    archivo_csv = "c:\\Users\\Luciano Nicolas\\Documents\\GitHub\\Trabajo-integrador-Programacion-\\Paises-\\Paises.csv"
+    # Solo indicamos el nombre del archivo; la función cargará la ruta automáticamente
+    archivo_csv = "Paises.csv"
 
     # Se cargan los países desde el CSV usando una función del archivo funciones.py
     paises = cargar_paises(archivo_csv)
