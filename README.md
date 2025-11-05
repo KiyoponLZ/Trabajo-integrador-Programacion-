@@ -3,127 +3,100 @@ El trabajo para finalizar esta materia
 Proyecto Python – Análisis de Países
 Descripción del programa
 
-Este proyecto consiste en un programa desarrollado en Python que permite analizar y gestionar información sobre distintos países a partir de un archivo CSV.
-El objetivo principal fue aplicar los conceptos aprendidos de listas, diccionarios, funciones, archivos y modularización, para crear un sistema capaz de realizar búsquedas, filtros, ordenamientos y cálculos estadísticos sobre los datos.
+Este proyecto consiste en un programa desarrollado en Python que trabaja con un archivo CSV llamado Paises.csv, el cual contiene información sobre distintos países del mundo (nombre, población, superficie y continente).
 
-El programa está diseñado para ser fácil de usar, presentando un menú con distintas opciones y trabajando con datos almacenados en una estructura clara y ordenada.
+El objetivo es permitir al usuario buscar, filtrar, ordenar y analizar los datos de forma interactiva desde un menú, aplicando estructuras de datos y técnicas de programación vistas a lo largo del año.
 
-Estructura del proyecto
+El programa fue diseñado para ser modular, legible y portátil, de manera que pueda ejecutarse en cualquier computadora sin necesidad de modificar rutas ni configuraciones.
 
-El proyecto se encuentra dividido en varios archivos con funciones específicas, lo que facilita su comprensión y mantenimiento:
+ Funcionamiento interno del programa
 
-main.py → Contiene el menú principal, gestiona las opciones del usuario y muestra los resultados.
+El programa inicia en el archivo main.py, que muestra un menú principal con distintas opciones para el usuario.
 
-funciones.py → Incluye todas las funciones necesarias para el funcionamiento del programa (búsqueda, filtrado, ordenamiento, estadísticas, carga de datos, etc.).
+Cuando el usuario selecciona una opción, se llama a una función específica que está definida en funciones.py.
 
-Paises.csv → Archivo de datos que contiene información sobre cada país.
+Estas funciones trabajan con una lista de diccionarios llamada paises, donde cada diccionario representa un país con sus respectivos datos.
 
-README.md → Documento con la descripción, funcionamiento y detalles del proyecto.
+Al iniciar, el programa carga automáticamente los datos desde el archivo Paises.csv utilizando el módulo os para encontrar la ruta correcta del archivo, incluso si el proyecto se mueve de carpeta.
 
-Instrucciones de uso
+Dependiendo de la opción elegida, el programa puede:
 
-Asegurarse de tener instalado Python 3.10 o superior.
+Buscar países por nombre.
 
-Descargar todos los archivos del repositorio y mantenerlos dentro de la misma carpeta (el programa busca automáticamente el archivo CSV).
+Filtrar por continente o por rango (población o superficie).
 
-Abrir una terminal en la carpeta del proyecto y ejecutar el comando:
+Ordenar la lista según distintos criterios.
 
-python main.py
+Calcular estadísticas generales (mayor y menor población, promedios, cantidad por continente).
 
+Agregar un país nuevo validando los datos ingresados.
 
-Seguir las instrucciones que aparecen en pantalla para navegar por el menú.
+Si se agrega un nuevo país, los cambios se guardan automáticamente en el archivo Paises.csv.
 
-El programa permite realizar distintas acciones sobre los datos cargados, como buscar, filtrar, ordenar o agregar países.
+Finalmente, el programa muestra los resultados por pantalla y vuelve al menú hasta que el usuario decida salir.
 
-Estructura de datos utilizada
+ Estructura del proyecto
 
-El programa utiliza una lista de diccionarios para almacenar la información de los países.
-Cada elemento de la lista representa un país con los siguientes campos:
+El proyecto está dividido en dos módulos principales para mantener un código organizado y fácil de mantener:
 
-{
-  "nombre": "Argentina",
-  "poblacion": 45376763,
-  "superficie": 2780400,
-  "continente": "América"
-}
+main.py → Contiene el menú principal y la interacción directa con el usuario.
 
+funciones.py → Incluye todas las funciones que ejecutan tareas específicas (búsquedas, filtros, cálculos, etc.).
 
-Esta estructura facilita el acceso a los datos, la búsqueda y el filtrado por diferentes criterios.
+Esta modularización permite trabajar de forma ordenada, entender mejor cada parte del código y repartir el trabajo entre los integrantes del grupo.
 
-Funcionalidades principales
+ Instrucciones de uso
 
-El sistema permite realizar las siguientes operaciones:
+Descargar todos los archivos del proyecto en una misma carpeta.
 
-Cargar datos desde un archivo CSV de manera automática.
+Verificar que el archivo Paises.csv esté en esa carpeta.
 
-Buscar países por texto dentro del nombre.
+Abrir el archivo main.py con Python (por ejemplo, desde Visual Studio Code o IDLE).
 
-Filtrar países por continente o por rangos de población o superficie.
+Ejecutar el programa.
 
-Ordenar países por nombre, población o superficie, tanto ascendente como descendente.
+Desde el menú, elegir la acción deseada (buscar, filtrar, ordenar, mostrar estadísticas o agregar país).
 
-Obtener estadísticas, como:
+ Ejemplo de entrada y salida
 
-País con mayor y menor población
+Entrada (búsqueda de país):
 
-Promedio de población y superficie
-
-Cantidad de países por continente
-
-Agregar un nuevo país manualmente, que se guarda también en el archivo CSV.
-
-Ejemplos de ejecución
-
-Ejemplo 1: Búsqueda por nombre
-
-Ingrese texto: ar
-Resultados:
-- Argentina
-- Paraguay
+Ingrese nombre o parte del nombre del país: Arg
 
 
-Ejemplo 2: Estadísticas
+Salida esperada:
 
-País con mayor población: China
-País con menor población: Islandia
-Promedio de población: 45.321.000
-Promedio de superficie: 985.000 km²
-Países por continente:
-América: 18
-Europa: 14
-Asia: 10
-África: 9
-Oceanía: 5
+País encontrado: Argentina
+Población: 45.376.763
+Superficie: 2.780.400 km²
+Continente: América
 
+ Integrantes del grupo
 
-Ejemplo 3: Agregar un país
+Maximmiliano Reinoso 
 
-Nombre del país: Noruega
-Continente: Europa
-Población: 5421241
-Superficie: 385207
-País agregado correctamente y guardado en el CSV.
+MaXimiliano Mendez
 
-Participación de los integrantes
+Leo Fachinelli
 
-El proyecto fue desarrollado de manera grupal. Cada integrante colaboró en distintas etapas del trabajo:
+Lautaro Fernandez
 
-Maxi → Diseño del menú principal y pruebas generales.
+Nicolas Ibañez
 
-Maisi → Redacción del marco teórico y documentación.
+Mailen Ortiz
 
-Leo → Desarrollo de funciones de búsqueda y filtrado.
+ Conclusión grupal
 
-Lauti → Implementación del ordenamiento manual y validaciones.
+En conclusión, este proyecto fue una gran oportunidad para aplicar todo lo aprendido durante el año, tanto en programación como en trabajo en equipo.
+Desde el principio entendimos que no se trataba solo de escribir código, sino de comprender el proceso completo: desde la planificación hasta las pruebas y correcciones.
 
-Nico → Carga automática del CSV y estadísticas generales y estructura del codigo
+Aprendimos a manejar estructuras de datos como listas y diccionarios, que fueron esenciales para organizar la información de los países, y también a trabajar con archivos CSV, algo muy útil y frecuente en proyectos reales.
+Dividimos el código en funciones, lo que hizo que fuera más claro y ordenado, permitiéndonos colaborar sin pisarnos el trabajo.
 
-Mai → Redacción de conclusiones y apoyo en la exposición del video , desarollo de validaciones y correciones del codigo
+Tuvimos algunos desafíos, como lograr que el programa funcione en cualquier computadora o mantener las funciones separadas correctamente, pero eso nos sirvió para investigar y aprender a resolver problemas de manera independiente.
+También tratamos de que el programa no solo funcione bien, sino que sea entendible y amigable para cualquier usuario.
 
-Conclusiones grupales
-
-A lo largo del desarrollo del proyecto aprendimos a trabajar con datos estructurados, a modularizar el código y a organizar la lógica del programa en distintas funciones para hacerlo más claro y reutilizable.
-También comprendimos la importancia de los comentarios, la validación de datos y la lectura de archivos externos.
-
-Este trabajo nos permitió afianzar los conceptos fundamentales de programación en Python, como el uso de listas y diccionarios, el manejo de archivos y la creación de programas con estructura y propósito.
-
+En general, este trabajo nos ayudó a mejorar la lógica, la organización y la comunicación grupal.
+Más allá del resultado técnico, lo más importante fue el aprendizaje que nos llevamos: cómo planificar, dividir responsabilidades y construir un programa completo desde cero.
+Sentimos que todo el esfuerzo valió la pena, y que este proyecto refleja el progreso que logramos durante todo el año.
+Muchas gracias por ver nuestra presentación y acompañarnos en este proceso.
