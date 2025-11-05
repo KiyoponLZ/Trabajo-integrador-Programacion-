@@ -1,46 +1,60 @@
-import csv  
 import os
 import re
 
-
-def cargar_paises(ruta):
-    
+# ----------------------------------------------------------
+# FUNCIÓN: cargar_paises
+# ----------------------------------------------------------
+# Esta función abre el archivo CSV donde están los países y carga sus datos.
+# Busca el archivo automáticamente en la misma carpeta del proyecto.
+# Devuelve una lista de diccionarios, donde cada país tiene:
+# nombre, población, superficie y continente.
+def cargar_paises(ruta_csv):
     paises = []
-    if not os.path.isfile(ruta):
-        print("Error: el archivo no existe.")
+
+    # Ubica la carpeta donde está este archivo (funciones.py)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    ruta_completa = os.path.join(base_dir, ruta_csv)
+
+    # Verifica si el archivo existe
+    if not os.path.isfile(ruta_completa):
+        print("Error: el archivo no existe en la ruta:", ruta_completa)
         return paises
+
+    # Intenta abrir y leer el archivo
     try:
-        f = open(ruta, "r", encoding="utf-8")
-        lineas = f.readlines()
-        f.close()
+        with open(ruta_completa, "r", encoding="utf-8") as f:
+            lineas = f.readlines()
     except Exception as e:
         print("Error al abrir el archivo:", e)
         return paises
 
-    
+    # Elimina líneas vacías y espacios innecesarios
     lineas = [l.strip() for l in lineas if l.strip() != ""]
 
+    # Si el archivo está vacío, devuelve una lista vacía
     if len(lineas) == 0:
         return paises
 
-    
+    # Verifica si la primera línea tiene los nombres de columnas
     primera = lineas[0].lower()
     if "nombre" in primera and "poblacion" in primera:
         datos = lineas[1:]
     else:
         datos = lineas
 
+    # Recorre cada línea y la convierte en un diccionario
     for i, linea in enumerate(datos, start=1):
         partes = linea.split(",")
         if len(partes) < 4:
             print("Advertencia: línea", i, "mal formada:", linea)
             continue
+
         nombre = partes[0].strip()
         pobl_str = partes[1].strip()
         sup_str = partes[2].strip()
         continente = partes[3].strip()
 
-        # convertir población
+        # Convierte la población a número
         try:
             pobl = int(pobl_str.replace(".", "").replace(" ", ""))
         except:
@@ -50,7 +64,7 @@ def cargar_paises(ruta):
                 print("Advertencia: población inválida en línea", i, ":", pobl_str)
                 continue
 
-        
+        # Convierte la superficie a número
         try:
             sup = int(sup_str.replace(".", "").replace(" ", ""))
         except:
@@ -60,6 +74,7 @@ def cargar_paises(ruta):
                 print("Advertencia: superficie inválida en línea", i, ":", sup_str)
                 continue
 
+        # Crea un diccionario con los datos del país
         pais = {
             "nombre": nombre,
             "poblacion": pobl,
@@ -71,8 +86,12 @@ def cargar_paises(ruta):
     return paises
 
 
+# ----------------------------------------------------------
+# FUNCIÓN: buscar_pais
+# ----------------------------------------------------------
+# Busca países que contengan un texto dentro de su nombre.
+# Ejemplo: buscar "ar" puede devolver "Argentina".
 def buscar_pais(paises, texto):
-    
     if not texto:
         return []
     txt = texto.lower()
@@ -84,8 +103,11 @@ def buscar_pais(paises, texto):
     return resultados
 
 
+# ----------------------------------------------------------
+# FUNCIÓN: filtrar_por_continente
+# ----------------------------------------------------------
+# Devuelve una lista con los países que pertenecen a un continente específico.
 def filtrar_por_continente(paises, continente):
-   
     if not continente:
         return []
     cont = continente.lower()
@@ -96,8 +118,11 @@ def filtrar_por_continente(paises, continente):
     return resultados
 
 
+# ----------------------------------------------------------
+# FUNCIÓN: filtrar_por_rango
+# ----------------------------------------------------------
+# Permite filtrar países según un rango de población o superficie.
 def filtrar_por_rango(paises, campo, minimo, maximo):
-    
     if campo not in ("poblacion", "superficie"):
         return []
     resultados = []
@@ -106,35 +131,28 @@ def filtrar_por_rango(paises, campo, minimo, maximo):
             valor = int(p.get(campo, 0))
         except:
             continue
-        if valor >= minimo and valor <= maximo:
+        if minimo <= valor <= maximo:
             resultados.append(p)
     return resultados
 
 
+# ----------------------------------------------------------
+# FUNCIÓN: ordenar_paises
+# ----------------------------------------------------------
+# Ordena los países por nombre, población o superficie.
+# Se puede elegir ascendente o descendente.
 def ordenar_paises(paises, campo, descendente=False):
-    
-    lista = []
-    for p in paises:
-        lista.append(dict(p))
+    lista = [dict(p) for p in paises]  # copia de la lista original
+    n = len(lista)
 
-    n = 0
-    for _ in lista:
-        n += 1
-
-    
+    # Función interna que compara dos países según el campo elegido
     def menor(a, b):
         if campo == "nombre":
-            try:
-                return a.get("nombre", "").lower() < b.get("nombre", "").lower()
-            except:
-                return False
+            return a.get("nombre", "").lower() < b.get("nombre", "").lower()
         else:
-            try:
-                return int(a.get(campo, 0)) < int(b.get(campo, 0))
-            except:
-                return False
+            return int(a.get(campo, 0)) < int(b.get(campo, 0))
 
-    
+    # Método burbuja (bubble sort)
     for i in range(n):
         for j in range(0, n - 1 - i):
             swap = False
@@ -145,52 +163,46 @@ def ordenar_paises(paises, campo, descendente=False):
                 if menor(lista[j + 1], lista[j]):
                     swap = True
             if swap:
-                temp = lista[j]
-                lista[j] = lista[j + 1]
-                lista[j + 1] = temp
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+
     return lista
 
 
+# ----------------------------------------------------------
+# FUNCIÓN: estadisticas
+# ----------------------------------------------------------
+# Calcula estadísticas básicas:
+# - País con mayor y menor población
+# - Promedio de población y superficie
+# - Cantidad de países por continente
 def estadisticas(paises):
-   
     if not paises:
         return None
 
-    mayor = None
-    menor = None
-    suma_pob = 0
-    suma_sup = 0
-    contador = 0
+    mayor = menor = None
+    suma_pob = suma_sup = contador = 0
     por_continente = {}
 
     for p in paises:
-        try:
-            pob = int(p.get("poblacion", 0))
-        except:
-            continue
-        try:
-            sup = int(p.get("superficie", 0))
-        except:
-            sup = 0
+        pob = int(p.get("poblacion", 0))
+        sup = int(p.get("superficie", 0))
 
+        # Guarda el país con más y menos población
         if mayor is None or pob > mayor["poblacion"]:
             mayor = p
         if menor is None or pob < menor["poblacion"]:
             menor = p
 
+        # Suma para calcular promedios
         suma_pob += pob
         suma_sup += sup
         contador += 1
 
+        # Cuenta cuántos países hay por continente
         cont = p.get("continente", "Desconocido")
-        if cont in por_continente:
-            por_continente[cont] += 1
-        else:
-            por_continente[cont] = 1
+        por_continente[cont] = por_continente.get(cont, 0) + 1
 
-    if contador == 0:
-        return None
-
+    # Calcula los promedios
     promedio_pob = suma_pob / contador
     promedio_sup = suma_sup / contador
 
@@ -203,58 +215,69 @@ def estadisticas(paises):
     }
 
 
+# ----------------------------------------------------------
+# FUNCIÓN: agregar_pais_manual
+# ----------------------------------------------------------
+# Permite ingresar un nuevo país desde teclado.
+# El país se guarda tanto en la lista como en el archivo CSV.
 def agregar_pais_manual(paises, archivo_csv):
+    # Valida que solo se usen letras y espacios
     def solo_letras_ascii_y_espacios(s):
         s = s.strip()
         return bool(re.match(r'^[A-Za-z\s]+$', s))
 
     nombre = input("Nombre del país: ").strip()
     if not nombre or not solo_letras_ascii_y_espacios(nombre):
-        print("Nombre inválido. Use sólo letras ASCII y espacios (no acentos ni ñ, no números ni símbolos).")
+        print("Nombre inválido. Use sólo letras ASCII y espacios.")
         return
 
+    # Verifica que no esté repetido
     if any(p['nombre'].strip().lower() == nombre.lower() for p in paises):
-        print("Error: el país ya está cargado. No se puede duplicar.")
+        print("Error: el país ya está cargado.")
         return
 
     continente = input("Continente: ").strip()
     if not continente or not solo_letras_ascii_y_espacios(continente):
-        print("Continente inválido. Use sólo letras ASCII y espacios (no acentos ni ñ, no números ni símbolos).")
+        print("Continente inválido.")
         return
 
+    # Pide y valida población
     while True:
-        pob_input = input("Población (entero): ").strip()
         try:
-            poblacion = int(pob_input)
+            poblacion = int(input("Población (entero): ").strip())
             if poblacion < 0:
-                print("La población debe ser un número no negativo.")
+                print("La población debe ser no negativa.")
                 continue
             break
         except ValueError:
             print("Entrada inválida. Ingrese un número entero.")
 
+    # Pide y valida superficie
     while True:
-        sup_input = input("Superficie (puede tener decimales): ").strip()
         try:
-            superficie = float(sup_input)
+            superficie = float(input("Superficie (puede tener decimales): ").strip())
             if superficie < 0:
-                print("La superficie debe ser un número no negativo.")
+                print("La superficie debe ser no negativa.")
                 continue
             break
         except ValueError:
             print("Entrada inválida. Ingrese un número (ej. 1234 o 1234.56).")
 
+    # Crea el nuevo país y lo agrega a la lista
     nuevo = {
         "nombre": nombre,
         "poblacion": poblacion,
         "superficie": superficie,
         "continente": continente
     }
-
     paises.append(nuevo)
 
+    # Guarda el país en el archivo CSV
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    ruta_completa = os.path.join(base_dir, archivo_csv)
+
     try:
-        with open(archivo_csv, "a", encoding="utf-8") as f:
+        with open(ruta_completa, "a", encoding="utf-8") as f:
             f.write(f"{nombre},{poblacion},{superficie},{continente}\n")
         print("País agregado correctamente y guardado en el CSV.")
     except Exception as e:

@@ -1,9 +1,9 @@
 # Importo todas las funciones desde el archivo funciones.py
-# (ahí están las tareas principales como buscar, filtrar, ordenar, etc.)
+# (ahí están las tareas principales como buscar, filtrar, ordenar, etc.)Vamos nosotros
 from funciones import *
 
 # ---------------- MENÚ PRINCIPAL ----------------
-# Esta función solo muestra las opciones que el usuario puede elegir
+# Esta función solo muestra las opciones que tiene este programa
 def mostrar_menu():
     print("\n=== MENÚ PRINCIPAL ===")
     print("1. Buscar país por nombre")
