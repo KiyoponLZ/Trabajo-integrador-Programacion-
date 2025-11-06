@@ -25,7 +25,10 @@ def mostrar_paises(lista):
 
 # ---------------- FUNCIÓN PRINCIPAL ----------------
 def main():
-    archivo_csv = "Paises.csv"
+    # Ruta automática del archivo CSV (lo busca en la misma carpeta del script)
+    archivo_csv = os.path.join(os.path.dirname(os.path.abspath(__file__)), "Paises.csv")
+
+    #  Carga inicial de países desde el CSV
     paises = cargar_paises(archivo_csv)
 
     if not paises:
@@ -97,3 +100,5 @@ def main():
 # ---------------- PUNTO DE ENTRADA ----------------
 if __name__ == "__main__":
     main()
+
+
