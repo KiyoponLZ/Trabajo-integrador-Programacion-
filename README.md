@@ -1,158 +1,71 @@
-# Trabajo-integrador-Programacion-
-El trabajo para finalizar esta materia(por ahora)
-Proyecto Python – Análisis de Países
+<h1 align="left">Trabajo Práctico Integrador - Programación I</h1>
 
+###
 
-Descripción del proyecto
+<h3 align="left">Descripción del Proyecto</h3>
 
-Este proyecto consiste en un programa desarrollado en Python que trabaja con un archivo CSV llamado Paises.csv, el cual contiene información sobre distintos países del mundo: nombre, población, superficie y continente.
+###
 
-El objetivo es permitir al usuario buscar, filtrar, ordenar y analizar los datos de forma interactiva desde un menú, aplicando estructuras de datos y técnicas de programación vistas a lo largo del año.
+<p align="left">Este proyecto consiste en un programa desarrollado en Python que trabaja con un archivo CSV llamado Paises.csv, el cual contiene información sobre distintos países del mundo: nombre, población, superficie y continente.<br>El objetivo es permitir al usuario buscar, filtrar, ordenar y analizar los datos de forma interactiva desde un menú, aplicando estructuras de datos y técnicas de programación vistas a lo largo del año.<br>El programa fue diseñado para ser modular, legible y portátil, de manera que pueda ejecutarse en cualquier computadora sin necesidad de modificar rutas ni configuraciones.</p>
 
-El programa fue diseñado para ser modular, legible y portátil, de manera que pueda ejecutarse en cualquier computadora sin necesidad de modificar rutas ni configuraciones.
+###
 
-Funcionamiento interno del programa
+<h3 align="left">Integrantes</h3>
 
-El programa inicia en el archivo main.py, que muestra un menú principal con distintas opciones para el usuario.
+###
 
-Cuando el usuario selecciona una opción, se llama a una función específica que está definida en funciones.py.
+<p align="left">- Fachinelli, Leonel <br>- Fernandez, Lautaro <br>- Ibáñez, Nicolás<br>- Mendez, Maximiliano<br>- Ortiz, Mailen<br>- Reinoso, Maximiliano</p>
 
-Estas funciones trabajan con una lista de diccionarios llamada paises, donde cada diccionario representa un país con sus respectivos datos.
+###
 
-Al iniciar, el programa carga automáticamente los datos desde el archivo Paises.csv utilizando el módulo os para encontrar la ruta correcta del archivo, incluso si el proyecto se mueve de carpeta.
+<p align="left">Profesor: Gerardo Luis Magni</p>
 
-Dependiendo de la opción elegida, el programa puede:
+###
 
-Buscar países por nombre.
+<h3 align="left">Estructura</h3>
 
-Filtrar por continente o por rango (población o superficie).
+###
 
-Ordenar la lista según distintos criterios.
+<p align="left">El proyecto está dividido en dos módulos principales para mantener un código organizado y fácil de mantener:<br><br>main.py → Contiene el menú principal y la interacción directa con el usuario.<br>funciones.py → Incluye todas las funciones que ejecutan tareas específicas (búsquedas, filtros, cálculos, etc.).<br><br>Esta modularización permite trabajar de forma ordenada, entender mejor cada parte del código y repartir el trabajo entre los integrantes del grupo.<br><br>Proyecto-Paises/ <br>├── main.py <br>├── funciones.py <br>├── Paises.csv <br>└── README.md</p>
 
-Calcular estadísticas generales (mayor y menor población, promedios, cantidad por continente).
+###
 
-Agregar un país nuevo validando los datos ingresados.
+<h3 align="left">Instrucciones de Ejecución</h3>
 
-Si se agrega un nuevo país, los cambios se guardan automáticamente en el archivo Paises.csv.
+###
 
-Finalmente, el programa muestra los resultados por pantalla y vuelve al menú hasta que el usuario decida salir.
+<p align="left">- Descargar todos los archivos del proyecto en una misma carpeta.<br>- Verificar que el archivo Paises.csv esté en esa carpeta.<br>- Abrir el archivo main.py con Python (por ejemplo, desde Visual Studio Code o IDLE).<br>- Ejecutar el programa con el siguiente comando: python main.py<br>- Desde el menú, elegir la acción deseada (buscar, filtrar, ordenar, mostrar estadísticas o agregar país).</p>
 
-Estructura del proyecto
+###
 
-El proyecto está dividido en dos módulos principales para mantener un código organizado y fácil de mantener:
+<h3 align="left">Links a Video / Repositorio a GitHub --> </h3>
 
-main.py → Contiene el menú principal y la interacción directa con el usuario.
+###
 
-funciones.py → Incluye todas las funciones que ejecutan tareas específicas (búsquedas, filtros, cálculos, etc.).
+<p align="left">Link a Video --><br>Link a Repositorio GitHub --> https://github.com/KiyoponLZ/Trabajo-integrador-Programacion-/tree/main</p>
 
-Esta modularización permite trabajar de forma ordenada, entender mejor cada parte del código y repartir el trabajo entre los integrantes del grupo.
+###
 
-Proyecto-Paises/
-├── main.py
-├── funciones.py
-├── Paises.csv
-└── README.md
+<h3 align="left">Ejemplos de Entrada y Salida</h3>
 
-Instrucciones de uso
+###
 
-Descargar todos los archivos del proyecto en una misma carpeta.
+<p align="left">Ejemplos de entrada y salida Ejemplo 1 – Buscar un país<br>Entrada:<br>Ingrese nombre o parte del nombre del país: Arg<br><br>Salida esperada:<br>País encontrado: Argentina Población: 45.376.763 Superficie: 2.780.400 km² Continente: América<br><br>Ejemplo 2 – Filtrar por continente<br>Entrada:<br>Ingrese continente: Europa<br><br>Salida esperada:<br>Países del continente América:<br>Canadá<br>Brasil<br>Argentina<br><br>Ejemplo 3 – Mostrar estadísticas<br>Salida esperada:<br>País con mayor población: Brasil (213993437)<br>País con menor población: Australia (25687041)<br>Población promedio: 90895729.43<br>Superficie promedio: 4387186.86<br><br>Cantidad de países por continente:<br>  América: 3<br>  Asia: 1<br>  Europa: 1<br>  África: 1<br>  Oceanía: 1<br><br>Ejemplo 4 – Agregar un país<br>Entrada:<br>Nombre del país: Andorra Continente: Europa Población: 77000 Superficie: 468<br><br>Salida esperada:<br>País agregado correctamente y guardado en el CSV.</p>
 
-Verificar que el archivo Paises.csv esté en esa carpeta.
+###
 
-Abrir el archivo main.py con Python (por ejemplo, desde Visual Studio Code o IDLE).
+<h3 align="left">Participación de los Participantes</h3>
 
-Ejecutar el programa con el siguiente comando:
+###
 
-python main.py
+<p align="left">La documentación del proyecto se estructuró con los siguientes aportes individuales:<br><br>- Ibáñez, Nicolás: Desarrolló las explicaciones sobre listas, la gestión de archivos CSV y el README.<br><br>- Mendez, Maximiliano: Preparó la sección dedicada a funciones, la descripción del caso práctico y realizó la edición del video.<br><br>- Reinoso, Maximiliano: Se centró en la explicación de las condicionales y la definición de la metodología de trabajo.<br><br>- Ortiz, Mailen: Se encargó de la sección de diccionarios y la definición de los objetivos además de la estructuración del documento y ayuda con el README.<br><br>- Fachinelli, Leonel: Elaboró el contenido sobre ordenamientos y la sección de resultados además de ayudar con correcciones en el documento.<br><br>- Fernandez, Lautaro: Aportó el material sobre estadísticas básicas, la redacción de las conclusiones finales y el diagrama de el flujo de operaciones principales.</p>
 
+###
 
-Desde el menú, elegir la acción deseada (buscar, filtrar, ordenar, mostrar estadísticas o agregar país).
+<h4 align="left">Desarrollo del Código Python</h4>
 
-Ejemplos de entrada y salida
-Ejemplo 1 – Buscar un país
+###
 
-Entrada:
+<p align="left">- Aportes Colectivos: Todos los integrantes del equipo contribuyeron activamente en la programación aportando ideas y realizando código.</p>
 
-Ingrese nombre o parte del nombre del país: Arg
-
-
-Salida esperada:
-
-País encontrado: Argentina
-Población: 45.376.763
-Superficie: 2.780.400 km²
-Continente: América
-
-Ejemplo 2 – Filtrar por continente
-
-Entrada:
-
-Ingrese continente: Europa
-
-
-Salida esperada:
-
-Países del continente Europa:
-- España
-- Francia
-- Alemania
-- Italia
-
-Ejemplo 3 – Mostrar estadísticas
-
-Salida esperada:
-
-País con mayor población: China (1.410.000.000)
-País con menor población: Islandia (372.000)
-Promedio de población: 82.000.000
-Promedio de superficie: 650.000 km²
-Cantidad de países por continente:
-- América: 12
-- Europa: 15
-- Asia: 20
-- África: 10
-- Oceanía: 5
-
-Ejemplo 4 – Agregar un país
-
-Entrada:
-
-Nombre del país: Andorra
-Continente: Europa
-Población: 77000
-Superficie: 468
-
-
-Salida esperada:
-
-País agregado correctamente y guardado en el CSV.
-
-Integrantes del grupo y tareas realizadas
-
-Maximiliano Reinoso: Intervencion en las Validaciones Presentación general del proyecto y explicación del objetivo principal.
-
-Maximiliano Méndez: Desarolo de las Funciones , Desarrollo del marco teórico y explicación de las estructuras de datos utilizadas.
-
-Leo Fachinelli: Diseño de la estructura del código y organización de la modularización entre main.py y funciones.py.
-
-Lautaro Fernández: Implementación y explicación del sistema de carga automática del archivo CSV.
-
-Nicolás Ibañez: Armado del cuerpo del codigo ,Demostración práctica del programa y explicación de las funciones principales.
-
-Mailén Ortiz: Correciones y ayuda en el estructurado del codigo ,Conclusión y reflexión final sobre los aprendizajes del grupo.
-
-Conclusión grupal
-
-En conclusión, este proyecto fue una gran oportunidad para aplicar todo lo aprendido durante el año, tanto en programación como en trabajo en equipo.
-Desde el principio entendimos que no se trataba solo de escribir código, sino de comprender el proceso completo: desde la planificación hasta las pruebas y correcciones.
-
-Aprendimos a manejar estructuras de datos como listas y diccionarios, que fueron esenciales para organizar la información de los países, y también a trabajar con archivos CSV, algo muy útil y frecuente en proyectos reales.
-Dividimos el código en funciones, lo que hizo que fuera más claro y ordenado, permitiéndonos colaborar sin pisarnos el trabajo.
-
-Tuvimos algunos desafíos, como lograr que el programa funcione en cualquier computadora o mantener las funciones separadas correctamente, pero eso nos sirvió para investigar y aprender a resolver problemas de manera independiente.
-También tratamos de que el programa no solo funcione bien, sino que sea entendible y amigable para cualquier usuario.
-
-En general, este trabajo nos ayudó a mejorar la lógica, la organización y la comunicación grupal.
-Más allá del resultado técnico, lo más importante fue el aprendizaje que nos llevamos: cómo planificar, dividir responsabilidades y construir un programa completo desde cero.
-Sentimos que todo el esfuerzo valió la pena y que este proyecto refleja el progreso que logramos durante todo el año.
-Muchas gracias por ver nuestra presentación y acompañarnos en este proceso.
+###
